@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1 class="mt-4">Bienvenue, vos Conducteurs</h1>
+<div class="container">
+{% if app.request.get('delete') is defined and app.request.get('delete') == "success" %}
+	<div class="alert alert-alert alert-dismissible fade show" role="alert">
+		Votre vtc à bien etait suprimer !
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+	{%endif%}
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Prenom</th>
+				<th scope="col">Age</th>
+				<th scope="col">Action</th>
+				
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for driver in drivers %}
+				<tr>
+					<th scope="row">{{loop.index}}</th>
+					<td>{{ driver.nom}}</td>
+					<td>{{ driver.prenom}}</td>
+					<td>{{ driver.age}}</td>
+                    <td>
+					<a href="{{ path('delete',{id : driver.id })}}" class="btn btn-danger">Delete</a>
+					<a href="{{ path('show',{id : driver.id })}}" class="btn btn-primary">Show</a>
+					</td>
+				</tr>
+                {% endfor%}
+</div>
+{% endblock %}
