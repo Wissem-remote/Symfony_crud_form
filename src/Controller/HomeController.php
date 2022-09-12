@@ -87,9 +87,37 @@ class HomeController extends AbstractController
 
             $em->flush();
 
+            $this->addFlash('success_add','Votre conducteur est ajouter');
+
             return $this->redirectToRoute('home');
         }
         return $this->render('home/form.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/update/{id}', name: 'update')]
+    
+    public function update(Conducteur $vtc, Request $request, ManagerRegistry $doctrine): Response
+    {
+        
+        $form = $this->createForm(ConducteurType::class, $vtc);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $em = $doctrine->getManager();
+
+            // on fait pas de persist car objet est deja remplie au prêt de doctrine
+
+            $em->flush();
+
+            $this->addFlash('success_update', 'Votre conducteur à été modifier');
+
+            return $this->redirectToRoute('home');
+        }
+        
+        return $this->render('home/update.html.twig', [
             'form' => $form->createView()
         ]);
     }

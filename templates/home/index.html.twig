@@ -6,12 +6,29 @@
 <div class="container">
 <h1 class="mt-4">Bienvenue, vos Conducteurs</h1>
 <div class="container">
-{% if app.request.get('delete') is defined and app.request.get('delete') == "success" %}
+	{% if app.request.get('delete') is defined and app.request.get('delete') == "success" %}
 	<div class="alert alert-alert alert-dismissible fade show" role="alert">
 		Votre vtc à bien etait suprimer !
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
 	{%endif%}
+	{% for message in  app.flashes('success_add') %}
+
+		<div class="alert alert-primary alert-dismissible primary fade show" role="alert">
+			{{ message }}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+
+	{% endfor %}
+
+{% for message in  app.flashes('success_update') %}
+
+	<div class="alert alert-primary alert-dismissible primary fade show" role="alert">
+		{{ message }}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+{% endfor %}
 
 	<table class="table">
 		<thead>
@@ -35,6 +52,7 @@
                     <td>
 					<a href="{{ path('delete',{id : driver.id })}}" class="btn btn-danger">Delete</a>
 					<a href="{{ path('show',{id : driver.id })}}" class="btn btn-primary">Show</a>
+					<a href="{{ path('update',{id : driver.id })}}" class="btn btn-primary">Update</a>
 					</td>
 				</tr>
                 {% endfor%}

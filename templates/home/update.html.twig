@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer
+{% endblock %}
+
+{% block body %}
+	<div class="m-auto w-75">
+         
+            {{form_start(form)}}
+            <div class="row ">
+            <div class="col-6">
+            {{form_row(form.nom)}}
+            </div>
+            <div class="col-6">
+                {{form_row(form.prenom)}}
+            </div>
+            <div class="col-6">
+                {{form_row(form.age)}}
+            </div>
+            {{form_row(form.save,{'label': 'Modifier'}) }}
+            </div>
+            {{form_end(form)}}
+           
+	</div>
+	{% endblock %}

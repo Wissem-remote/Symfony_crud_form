@@ -17,7 +17,7 @@ class ConducteurType extends AbstractType
         $builder
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
-            ->add('age', NumberType::class)
+            ->add('age')
             ->add('save', SubmitType::class)
         ;
     }
