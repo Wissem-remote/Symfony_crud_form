@@ -34,6 +34,36 @@
                         <a href="{{ path('create')}}" class="nav-link fs-5">
                             Ajouter
                         </a>
+                  
+
+                        {% if app.user %}
+
+                        <a href="{{ path('app_logout')}}" 
+                        style="--bs-btn-padding-y: -230.3rem; --bs-btn-padding-x: -230.3rem; --bs-btn-font-size: -44.25rem;"
+                        class="nav-link  btn btn-sm btn-danger  text-white">
+
+
+
+                            Se Connecter
+                        </a>
+
+                        {% else %}
+
+                        <a href="{{ path('app_register')}}" style="--bs-btn-padding-y: -230.3rem; --bs-btn-padding-x: -230.3rem; --bs-btn-font-size: -44.25rem;" class="nav-link  me-2 btn btn-sm btn-primary text-white">
+
+                            S'inscrire
+                        </a>
+
+                        
+                        <a href="{{ path('app_login')}}" style="--bs-btn-padding-y: -230.3rem; --bs-btn-padding-x: -230.3rem; --bs-btn-font-size: -44.25rem;" class="nav-link  me-2 btn btn-sm btn-info text-white">
+
+
+                            Se Connecter
+                        </a>
+
+
+                        {% endif%}
+
 
 
 
